@@ -55,9 +55,13 @@ describe('InfoService tests', () => {
 
       const response = await infoService.validateInfo(inputDataWithAgeAsString);
 
-      expect(response).toEqual(
-        expectedSuccessResponse(inputDataWithAgeAsString),
-      );
+      expect(response).toEqual({
+        success: true,
+        data: {
+          ...inputDataWithAgeAsString,
+          age: Number(inputDataWithAgeAsString.age),
+        },
+      });
     });
 
     it('given age < 18, married field can be null', async () => {
