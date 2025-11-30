@@ -1,10 +1,9 @@
 import { ValidationError } from 'class-validator';
-import { RuleEngineError } from 'src/info/services/rule-engine.service';
 
 interface BaseResponseInteface {
   success: boolean;
   data?: any;
-  errors?: ValidationError[] | RuleEngineError[];
+  errors?: ValidationError[];
 }
 
 interface BaseResponseSuccess extends BaseResponseInteface {
@@ -17,12 +16,4 @@ interface BaseResponseValidationError extends BaseResponseInteface {
   errors: ValidationError[];
 }
 
-interface BaseResponseRuleEngineError extends BaseResponseInteface {
-  success: false;
-  errors: RuleEngineError[];
-}
-
-export type BaseResponse =
-  | BaseResponseSuccess
-  | BaseResponseValidationError
-  | BaseResponseRuleEngineError;
+export type BaseResponse = BaseResponseSuccess | BaseResponseValidationError;

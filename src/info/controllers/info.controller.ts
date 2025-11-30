@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { InfoService } from '../services/info.service';
-import { UpdateInfoRequest } from '../dtos';
+import { UpdateInfoRequest } from '../models';
 import { BaseResponse } from '../../interfaces';
 
 @Controller('info')

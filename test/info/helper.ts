@@ -1,5 +1,5 @@
 import { error } from 'console';
-import { UpdateInfoRequest } from 'src/info/dtos';
+import { UpdateInfoRequest } from 'src/info/interfaces';
 
 export function generateDateOfBirth(age: number): Date {
   const today = new Date();
