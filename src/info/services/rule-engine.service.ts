@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UpdateInfoRequest } from '../interfaces';
+import { UpdateInfoRequest } from '../dtos';
 import { Rule } from '../rules/rule';
 import { INFO_RULES } from '../rules/rule-injectable';
 

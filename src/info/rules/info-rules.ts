@@ -1,4 +1,4 @@
-import { UpdateInfoRequest } from '../models';
+import { UpdateInfoRequest } from '../dtos';
 import { Rule } from './rule';
 
 export class NameRule implements Rule<UpdateInfoRequest> {
@@ -58,11 +58,6 @@ export class DateOfBirthRule implements Rule<UpdateInfoRequest> {
   validate(input: UpdateInfoRequest): boolean {
     const age = Number(input.age);
     const dateOfBirth: Date = input.dateOfBirth;
-
-    if (!(dateOfBirth instanceof Date) || isNaN(dateOfBirth.getTime())) {
-      return false;
-    }
-
     const now: Date = new Date();
 
     const yearDifference: number =

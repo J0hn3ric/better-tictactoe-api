@@ -1,4 +1,4 @@
-import { UpdateInfoRequest } from 'src/info/interfaces';
+import { UpdateInfoRequest } from 'src/info/dtos';
 
 export function generateDateOfBirth(age: number): Date {
   const today = new Date();
