@@ -7,6 +7,8 @@ import {
   minAge,
   minNameLength,
 } from './helper';
+import { RuleEngineService } from 'src/info/services/rule-engine.service';
+import { InfoRuleProvider } from 'src/info/rules/rule-injectable';
 import { Test } from '@nestjs/testing';
 
 describe('InfoService tests', () => {
@@ -14,7 +16,7 @@ describe('InfoService tests', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      providers: [InfoService],
+      providers: [InfoService, RuleEngineService, InfoRuleProvider],
     }).compile();
 
     infoService = module.get(InfoService);
@@ -53,13 +55,9 @@ describe('InfoService tests', () => {
 
       const response = await infoService.validateInfo(inputDataWithAgeAsString);
 
-      expect(response).toEqual({
-        success: true,
-        data: {
-          ...inputDataWithAgeAsString,
-          age: Number(inputDataWithAgeAsString.age),
-        },
-      });
+      expect(response).toEqual(
+        expectedSuccessResponse(inputDataWithAgeAsString),
+      );
     });
 
     it('given age < 18, married field can be null', async () => {

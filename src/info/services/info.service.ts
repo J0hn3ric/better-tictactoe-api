@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateInfoRequest as IUpdateInfoRequest } from '../interfaces';
+import { UpdateInfoRequest } from '../dtos';
 import { BaseResponse } from '../../interfaces';
-import { UpdateInfoRequest } from '../models';
-import { plainToClass } from 'class-transformer';
-import { validate } from 'class-validator';
+import { RuleEngineService } from './rule-engine.service';
 
 @Injectable()
 export class InfoService {
-  async validateInfo(rawData: IUpdateInfoRequest): Promise<BaseResponse> {
-    const data: UpdateInfoRequest = plainToClass(UpdateInfoRequest, rawData);
-    const validationErrors = await validate(data);
+  constructor(private readonly ruleEngineService: RuleEngineService) {}
+
+  async validateInfo(data: UpdateInfoRequest): Promise<BaseResponse> {
+    const validationErrors = this.ruleEngineService.validate(data);
     if (validationErrors.length > 0) {
       return {
         success: false,
