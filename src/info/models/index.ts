@@ -30,8 +30,7 @@ export class UpdateInfoRequest {
   @IsBoolean()
   married?: boolean;
 
-  @Transform(({ obj }) => obj.dateOfBirth ?? obj.date_of_birth)
-  @Type(() => Date)
+  @Transform(({ value }) => new Date(value))
   @IsDate()
   @Validate(DateOfBirthMatchesAge)
   dateOfBirth: Date;
