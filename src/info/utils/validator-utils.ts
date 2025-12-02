@@ -5,7 +5,7 @@ import {
 } from 'class-validator';
 import { UpdateInfoRequest } from '../interfaces';
 
-@ValidatorConstraint({ name: 'DateOgBirthMatchesAge', async: false })
+@ValidatorConstraint({ name: 'DateOfBirthMatchesAge', async: false })
 export class DateOfBirthMatchesAge implements ValidatorConstraintInterface {
   validate(
     dateOfBirth: Date,
